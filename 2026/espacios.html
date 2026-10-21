@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="color-scheme" content="dark">
+<title>Espacios de participación estratégica</title>
+<style>
+  :root {
+    --bg: #090914;
+    --panel: rgba(18, 20, 42, .88);
+    --panel-2: rgba(24, 27, 54, .88);
+    --ink: #f5f4ff;
+    --muted: #b8bddb;
+    --cyan: #57f5ff;
+    --pink: #ff55c8;
+    --lime: #c7ff62;
+    --line: rgba(87,245,255,.25);
+    --shadow: 0 0 26px rgba(87,245,255,.08), 0 0 42px rgba(255,85,200,.06);
+  }
+  * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body {
+    margin: 0;
+    color: var(--ink);
+    background:
+      radial-gradient(ellipse at 12% 0%, rgba(255,85,200,.14), transparent 34rem),
+      radial-gradient(ellipse at 90% 18%, rgba(87,245,255,.12), transparent 32rem),
+      linear-gradient(145deg, #080812, #0b1020 55%, #10091b);
+    font: 16px/1.55 Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    min-height: 100vh;
+  }
+  body::before {
+    content: "";
+    position: fixed; inset: 0; pointer-events: none; z-index: -1;
+    background-image: linear-gradient(rgba(87,245,255,.035) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(87,245,255,.035) 1px, transparent 1px);
+    background-size: 34px 34px;
+    mask-image: linear-gradient(to bottom, black, transparent 88%);
+  }
+  .wrap { width: min(1440px, calc(100% - 36px)); margin: 0 auto; padding: 46px 0 56px; }
+  .eyebrow {
+    display: inline-flex; align-items: center; gap: 9px;
+    color: var(--cyan); font-size: .75rem; font-weight: 800;
+    letter-spacing: .18em; text-transform: uppercase;
+  }
+  .dot { width: 8px; height: 8px; border-radius: 50%; background: var(--lime); box-shadow: 0 0 12px var(--lime); }
+  h1 {
+    margin: 14px 0 12px; max-width: 900px;
+    font-size: clamp(2.2rem, 5vw, 4.5rem); line-height: 1.02; letter-spacing: -.055em;
+    text-wrap: balance;
+  }
+  h1 span { color: var(--cyan); text-shadow: 0 0 24px rgba(87,245,255,.25); }
+  .intro { max-width: 850px; color: var(--muted); font-size: 1.04rem; margin: 0 0 26px; }
+  .topline { height: 2px; width: 100%; margin: 28px 0 24px; background: linear-gradient(90deg, var(--pink), var(--cyan), transparent); box-shadow: 0 0 12px rgba(87,245,255,.35); }
+  .callout {
+    display: grid; grid-template-columns: auto 1fr; gap: 14px; align-items: start;
+    padding: 17px 19px; margin: 0 0 24px;
+    background: linear-gradient(110deg, rgba(255,85,200,.09), rgba(87,245,255,.06));
+    border: 1px solid rgba(255,85,200,.32); border-radius: 14px; box-shadow: var(--shadow);
+  }
+  .callout .icon { color: var(--pink); font-size: 1.25rem; }
+  .callout p { margin: 0; color: #e7e7fa; }
+  .callout strong { color: var(--lime); }
+  .table-head { display:flex; justify-content:space-between; gap:14px; align-items:end; margin: 26px 0 12px; }
+  h2 { margin:0; font-size:1.35rem; letter-spacing:-.025em; }
+  .count { color: var(--muted); font-size:.82rem; white-space:nowrap; }
+  .table-shell { border: 1px solid var(--line); border-radius: 16px; overflow: hidden; box-shadow: var(--shadow); background: rgba(10,12,28,.72); }
+  .table-scroll { overflow-x: auto; }
+  table { width:100%; border-collapse: collapse; min-width: 900px; }
+  thead { background: linear-gradient(90deg, rgba(255,85,200,.15), rgba(87,245,255,.13)); }
+  th {
+    color: var(--cyan); text-align:left; padding: 17px 16px; font-size:.76rem;
+    letter-spacing:.1em; text-transform:uppercase; border-bottom:1px solid rgba(87,245,255,.3);
+  }
+  td { vertical-align:top; padding:17px 16px; border-bottom:1px solid rgba(184,189,219,.12); color:#e8e9fa; }
+  tbody tr:last-child td { border-bottom:0; }
+  tbody tr:hover { background: rgba(87,245,255,.045); }
+  td:first-child { width:21%; font-weight:750; color:white; }
+  td:nth-child(2) { width:22%; }
+  td:nth-child(3) { width:25%; }
+  td:nth-child(4) { width:32%; color:#c4c9e2; }
+  .num { display:inline-grid; place-items:center; width:25px; height:25px; margin-right:8px; border-radius:7px; color:#090914; background:var(--cyan); font-size:.78rem; font-weight:900; }
+  .tag { display:inline-block; margin-top:8px; border:1px solid rgba(199,255,98,.45); color:var(--lime); border-radius:999px; padding:2px 8px; font-size:.7rem; letter-spacing:.04em; }
+  a { color:var(--cyan); text-decoration-color:rgba(87,245,255,.45); text-underline-offset:3px; overflow-wrap:anywhere; }
+  a:hover { color:var(--lime); text-decoration-color:var(--lime); }
+  .links { display:flex; flex-wrap:wrap; gap:8px; margin-top:9px; }
+  .link-chip { display:inline-flex; align-items:center; gap:7px; border:1px solid rgba(87,245,255,.32); background:rgba(87,245,255,.06); border-radius:9px; padding:7px 10px; font-size:.82rem; text-decoration:none; }
+  .link-chip::after { content:"↗"; color:var(--pink); font-weight:800; }
+  .priority-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:14px; margin-top:14px; }
+  .priority {
+    position:relative; padding:19px; border-radius:14px; overflow:hidden;
+    background:linear-gradient(145deg, rgba(23,27,54,.94), rgba(13,15,32,.94));
+    border:1px solid rgba(87,245,255,.22); box-shadow:var(--shadow);
+  }
+  .priority::after { content:""; position:absolute; top:0; left:0; right:0; height:2px; background:linear-gradient(90deg,var(--pink),var(--cyan)); }
+  .priority .kicker { color:var(--pink); font-size:.72rem; font-weight:850; letter-spacing:.14em; text-transform:uppercase; }
+  .priority h3 { margin:8px 0; font-size:1.08rem; }
+  .priority p { color:var(--muted); margin:0; font-size:.92rem; }
+  .script { margin-top:25px; border:1px solid rgba(199,255,98,.32); border-radius:16px; padding:22px; background:linear-gradient(120deg,rgba(199,255,98,.055),rgba(87,245,255,.055)); }
+  .script h2 { color:var(--lime); margin-bottom:10px; }
+  blockquote { margin:0; color:#eceefb; border-left:3px solid var(--pink); padding:5px 0 5px 16px; }
+  .foot { margin-top:22px; color:#9299bf; font-size:.82rem; }
+  .foot strong { color:#c6cbed; }
+  @media (max-width: 760px) {
+    .wrap { width:min(100% - 22px, 680px); padding-top:28px; }
+    .intro { font-size:.98rem; }
+    .table-head { align-items:start; flex-direction:column; gap:3px; }
+    .table-shell { border:0; background:transparent; box-shadow:none; overflow:visible; }
+    .table-scroll { overflow:visible; }
+    table, tbody, tr, td { display:block; width:100%; min-width:0; }
+    thead { display:none; }
+    tbody { display:grid; gap:12px; }
+    tbody tr { border:1px solid rgba(87,245,255,.25); border-radius:13px; overflow:hidden; background:linear-gradient(145deg,rgba(20,23,47,.96),rgba(11,13,29,.96)); box-shadow:var(--shadow); }
+    td, td:first-child, td:nth-child(2), td:nth-child(3), td:nth-child(4) { width:100%; border-bottom:1px solid rgba(184,189,219,.11); padding:12px 14px; }
+    td:last-child { border-bottom:0; }
+    td::before { content:attr(data-label); display:block; margin-bottom:4px; color:var(--cyan); font-size:.68rem; font-weight:850; letter-spacing:.12em; text-transform:uppercase; }
+    td:first-child { font-size:1.03rem; padding-top:15px; }
+    td:first-child::before { color:var(--pink); }
+    .priority-grid { grid-template-columns:1fr; }
+    .callout { padding:14px; }
+  }
+  @media print {
+    body { background:#fff; color:#111; }
+    body::before { display:none; }
+    .wrap { width:100%; padding:0; }
+    h1, h1 span, h2, td, .intro, .callout p, .priority p, blockquote { color:#111 !important; text-shadow:none; }
+    .table-shell,.priority,.script,.callout { box-shadow:none; background:#fff; border-color:#aaa; }
+    .table-scroll { overflow:visible; }
+    table { min-width:0; font-size:10pt; }
+    th { color:#111; }
+    a { color:#111; }
+  }
+</style>
+</head>
+<body>
+<main class="wrap">
+  <div class="eyebrow"><span class="dot"></span> Mapa de networking · Bogotá</div>
+  <h1>Espacios de participación<br><span>estratégica</span></h1>
+  <p class="intro">Un mapa práctico para convertir su experiencia en Música en Marymount en conexiones con docentes, coordinadores y líderes de otras instituciones educativas. La idea es entrar por proyectos y colaboración, y dejar que las relaciones profesionales crezcan de forma natural.</p>
+  <div class="topline"></div>
+  <section class="callout" aria-label="Estrategia principal">
+    <div class="icon" aria-hidden="true">✳</div>
+    <p><strong>Estrategia recomendada:</strong> empezar por Gon y las actividades de Música/Artes de UNCOLI, donde la mona tiene una razón natural para participar. Después, ampliar la red hacia IB, AACBI y otros espacios educativos. Confirmar internamente fechas, cupos y criterios de participación antes de planear cada actividad.</p>
+  </section>
+
+  <div class="table-head">
+    <h2>Mapa de puertas de entrada</h2>
+    <div class="count">11 rutas · pensado para móvil y escritorio</div>
+  </div>
+  <div class="table-shell">
+    <div class="table-scroll">
+      <table>
+        <thead><tr><th>Puerta de entrada</th><th>¿A quién le pide ayuda?</th><th>¿Qué pedir?</th><th>Antecedentes de la organización con esa puerta de entrada</th></tr></thead>
+        <tbody>
+          <tr>
+            <td data-label="Puerta de entrada"><span class="num">01</span>Música de Marymount → UNCOLI <div class="tag">Prioridad máxima</div></td>
+            <td data-label="¿A quién le pide ayuda?">Gon y la persona que coordine la participación de Música en UNCOLI.</td>
+            <td data-label="¿Qué pedir?">Que la tengan en cuenta para festivales, conciertos, reuniones de profesores y actividades intercolegiales. Ofrecer apoyo en organización o acompañamiento pedagógico.</td>
+            <td data-label="Antecedentes">UNCOLI tiene una programación de Artes con actividades musicales y encuentros entre colegios. La conexión de la mona con Música hace que esta sea una entrada orgánica.<div class="links"><a class="link-chip" href="https://uncoli.edu.co/encuentros-y-experiencia-estudiantil/artes/cronograma-artes/" target="_blank" rel="noopener">Cronograma de Artes UNCOLI</a></div></td>
+          </tr>
+          <tr>
+            <td data-label="Puerta de entrada"><span class="num">02</span>Encuentros XSOUND</td>
+            <td data-label="¿A quién le pide ayuda?">Gon o quien gestione la participación musical de Marymount.</td>
+            <td data-label="¿Qué pedir?">Fechas de los próximos encuentros y opciones para colaborar en preparación, producción, acompañamiento o logística.</td>
+            <td data-label="Antecedentes">El cronograma de Artes de UNCOLI es el punto de consulta para identificar actividades musicales y sus contactos. Confirmar el formato, la próxima fecha y quiénes pueden participar.<div class="links"><a class="link-chip" href="https://uncoli.edu.co/encuentros-y-experiencia-estudiantil/artes/cronograma-artes/" target="_blank" rel="noopener">Ver cronograma</a></div></td>
+          </tr>
+          <tr>
+            <td data-label="Puerta de entrada"><span class="num">03</span>Artes escénicas de UNCOLI</td>
+            <td data-label="¿A quién le pide ayuda?">Gon y responsables internos de Artes o actividades culturales.</td>
+            <td data-label="¿Qué pedir?">Sumarse a proyectos que conecten música, danza y teatro; preguntar por encuentros de docentes y actividades interdisciplinarias.</td>
+            <td data-label="Antecedentes">La programación de Artes de UNCOLI incluye actividades de distintas disciplinas y eventos en colegios anfitriones. Es una forma de ampliar la red más allá del área musical.<div class="links"><a class="link-chip" href="https://uncoli.edu.co/encuentros-y-experiencia-estudiantil/artes/cronograma-artes/" target="_blank" rel="noopener">Cronograma de Artes</a></div></td>
+          </tr>
+          <tr>
+            <td data-label="Puerta de entrada"><span class="num">04</span>Reuniones de jefes de departamento UNCOLI</td>
+            <td data-label="¿A quién le pide ayuda?">Gon, coordinación académica o la persona que represente a Marymount en la red.</td>
+            <td data-label="¿Qué pedir?">Consultar si Música tiene representación y si puede asistir como participante, acompañante o apoyo en reuniones abiertas.</td>
+            <td data-label="Antecedentes">UNCOLI organiza espacios de coordinación entre áreas y colegios. La asistencia depende del rol, la invitación y las reglas de cada encuentro; conviene validar el calendario vigente.<div class="links"><a class="link-chip" href="https://uncoli.edu.co/" target="_blank" rel="noopener">Sitio oficial UNCOLI</a></div></td>
+          </tr>
+          <tr>
+            <td data-label="Puerta de entrada"><span class="num">05</span>Cumbre de Educadores UNCOLI</td>
+            <td data-label="¿A quién le pide ayuda?">Coordinación académica, dirección de sección o responsable del vínculo con UNCOLI.</td>
+            <td data-label="¿Qué pedir?">Información sobre la próxima edición, requisitos para asistir y oportunidades para colaborar en actividades de formación profesional.</td>
+            <td data-label="Antecedentes">Marymount ha comunicado su participación institucional en la Cumbre de Educadores. Hay que confirmar internamente la próxima edición, los cupos y las condiciones de acceso.<div class="links"><a class="link-chip" href="https://uncoli.edu.co/" target="_blank" rel="noopener">Sitio oficial UNCOLI</a></div></td>
+          </tr>
+          <tr>
+            <td data-label="Puerta de entrada"><span class="num">06</span>Comunidad del Bachillerato Internacional (IB)</td>
+            <td data-label="¿A quién le pide ayuda?">Coordinación IB de Marymount.</td>
+            <td data-label="¿Qué pedir?">Talleres, encuentros de educadores y actividades de desarrollo profesional relacionadas con su perfil o con proyectos interdisciplinarios.</td>
+            <td data-label="Antecedentes">Marymount participa en la comunidad IB y ha acogido encuentros educativos. Cada evento puede tener requisitos propios y no todos están abiertos a cualquier rol docente.<div class="links"><a class="link-chip" href="https://www.ibo.org/" target="_blank" rel="noopener">Organización del Bachillerato Internacional</a></div></td>
+          </tr>
+          <tr>
+            <td data-label="Puerta de entrada"><span class="num">07</span>AACBI</td>
+            <td data-label="¿A quién le pide ayuda?">La persona que represente a Marymount ante AACBI o la coordinación IB.</td>
+            <td data-label="¿Qué pedir?">Calendario de ferias, encuentros académicos y oportunidades de apoyar actividades entre colegios.</td>
+            <td data-label="Antecedentes">Se han reportado participaciones de docentes de Marymount en actividades de la red de colegios IB. Confirmar la programación vigente y las condiciones de participación.<div class="links"><a class="link-chip" href="https://aacbi.org/" target="_blank" rel="noopener">Sitio de AACBI</a></div></td>
+          </tr>
+          <tr>
+            <td data-label="Puerta de entrada"><span class="num">08</span>Red educativa RSHM</td>
+            <td data-label="¿A quién le pide ayuda?">Dirección de Marymount o responsable de relaciones institucionales internacionales.</td>
+            <td data-label="¿Qué pedir?">Información sobre proyectos colaborativos, intercambios, formación y comités de encuentros internacionales.</td>
+            <td data-label="Antecedentes">Marymount pertenece a una red educativa internacional RSHM. Las oportunidades dependen de los proyectos activos y de los perfiles que cada iniciativa necesite.<div class="links"><a class="link-chip" href="https://www.marymountbogota.edu.co/" target="_blank" rel="noopener">Marymount Bogotá</a></div></td>
+          </tr>
+          <tr>
+            <td data-label="Puerta de entrada"><span class="num">09</span>Eventos organizados en Marymount</td>
+            <td data-label="¿A quién le pide ayuda?">Gon, coordinación de eventos y dirección académica.</td>
+            <td data-label="¿Qué pedir?">Ofrecerse para apoyar eventos que reciban docentes de otros colegios, en especial los de Música, Artes y formación pedagógica.</td>
+            <td data-label="Antecedentes">Marymount ha servido como sede de actividades artísticas intercolegiales. Los eventos alojados en el colegio pueden facilitar conversaciones con visitantes y equipos de otras instituciones.<div class="links"><a class="link-chip" href="https://uncoli.edu.co/encuentros-y-experiencia-estudiantil/artes/cronograma-artes/" target="_blank" rel="noopener">Actividades de Artes UNCOLI</a></div></td>
+          </tr>
+          <tr>
+            <td data-label="Puerta de entrada"><span class="num">10</span>Secretaría de Educación de Bogotá</td>
+            <td data-label="¿A quién le pide ayuda?">Coordinación académica o responsables de relaciones institucionales.</td>
+            <td data-label="¿Qué pedir?">Convocatorias de comunidades de aprendizaje, encuentros de docentes y actividades de formación que admitan participantes de colegios privados.</td>
+            <td data-label="Antecedentes">La Secretaría desarrolla iniciativas de intercambio pedagógico y articulación educativa. Verificar convocatorias activas y criterios de inscripción.<div class="links"><a class="link-chip" href="https://www.educacionbogota.edu.co/" target="_blank" rel="noopener">Secretaría de Educación</a></div></td>
+          </tr>
+          <tr>
+            <td data-label="Puerta de entrada"><span class="num">11</span>ASOCOLDEP y ADICOP</td>
+            <td data-label="¿A quién le pide ayuda?">Dirección de Marymount o una persona que conozca sus vínculos con asociaciones de colegios privados.</td>
+            <td data-label="¿Qué pedir?">Calendario de seminarios, encuentros y espacios de desarrollo profesional para docentes y directivos; preguntar por condiciones de participación.</td>
+            <td data-label="Antecedentes">Son posibles vías para ampliar contactos en el sector de colegios privados. Antes de priorizarlas, confirmar afiliación institucional, actividades vigentes y criterios de acceso.<div class="links"><a class="link-chip" href="https://www.asocoldep.edu.co/" target="_blank" rel="noopener">ASOCOLDEP</a> <a class="link-chip" href="https://www.adicop.org/" target="_blank" rel="noopener">ADICOP</a></div></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <div class="table-head"><h2>Ruta de acción recomendada</h2><div class="count">Primero lo más cercano a su rol actual</div></div>
+  <section class="priority-grid">
+    <article class="priority"><div class="kicker">01 / Entrada natural</div><h3>Música + XSOUND + UNCOLI</h3><p>Hablar con Gon, ubicar al responsable de la participación del colegio y ofrecer ayuda en el próximo encuentro musical o artístico.</p></article>
+    <article class="priority"><div class="kicker">02 / Ampliar la red</div><h3>IB + AACBI</h3><p>Solicitar una presentación con la coordinación IB y preguntar por talleres, ferias y actividades interdisciplinarias donde pueda participar.</p></article>
+    <article class="priority"><div class="kicker">03 / Salir del círculo inmediato</div><h3>Cumbres y encuentros docentes</h3><p>Buscar espacios donde coincidan docentes, coordinadores y líderes académicos. La meta inicial: tres conversaciones profesionales nuevas.</p></article>
+  </section>
+
+  <section class="script">
+    <h2>Mensaje sugerido para Gon</h2>
+    <blockquote>Hola, Gon. Quería preguntarte algo: me gustaría seguir creciendo profesionalmente en el sector educativo y conocer más de cerca cómo trabajan otros colegios. Sé que desde Marymount hay participación en espacios de UNCOLI, especialmente en Música y Artes, y me encantaría poder involucrarme un poco más. ¿Sabes si hay próximos encuentros, conciertos, festivales o reuniones de docentes en los que pueda participar o apoyar? También me gustaría conocer otras oportunidades de formación y colaboración intercolegial. ¡Muchas gracias!</blockquote>
+  </section>
+  <p class="foot"><strong>Nota:</strong> los enlaces llevan a sitios institucionales para consultar información y calendarios. Los antecedentes resumidos sirven como punto de partida, no como confirmación de que haya cupos abiertos hoy. Antes de asistir, Mar debería validar fechas, contacto responsable, elegibilidad y autorización interna.</p>
+</main>
+</body>
+</html>
